@@ -1,0 +1,34 @@
+# see: https://docs.docker.com/compose/compose-file/
+
+version: '3'
+
+services:
+    website_master:
+        # the image to start the container from
+        # see: https://docs.docker.com/compose/compose-file/#image
+        image: demo/httpd
+        # options that are applied at build time
+        # see: https://docs.docker.com/compose/compose-file/#build
+        build: ./httpd
+
+    website_slave:
+        image: demo/httpd
+        build: ./httpd
+    
+    loadbalancer:
+        image: demo/haproxy
+        build: ./haproxy
+        # dependencies between services
+        # see: https://docs.docker.com/compose/compose-file/#depends_on
+        depends_on:
+            - website_master
+            - website_slave
+        # link between containers (service:alias)
+        # see: https://docs.docker.com/compose/compose-file/#links
+        links:
+            - website_master:website_master
+            - website_slave:website_slave
+        # list ports to be exposed (host_port:container_port)
+        # see: https://docs.docker.com/compose/compose-file/#ports
+        ports:
+            - 80:80

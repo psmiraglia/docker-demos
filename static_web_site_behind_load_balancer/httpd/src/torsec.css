@@ -1,0 +1,15 @@
+body { font-family: verdana, helvetica, arial, "sans serif" }
+dt { font-weight: bold }
+dd { margin-bottom: 0.5ex }
+li { margin-bottom: 0.5ex }
+a { text-decoration: none }
+a:link { color: blue }
+a:visited { color: blue }
+a:hover { color: red }
+a.head { color: #2525bf; font-size: small }
+a.foot { color: #2525bf }
+.Normal { color: #2525bf; background-color: #CCCCCC; line-height: 16px; }
+.Active { color: #000000;background-color : #f3f3f3;  line-height: 16px; }
+.img32 { width:32px; height:32px; border:0; vertical-align:middle; }
+.img30 { width:30px; height:30px; border:0; vertical-align:middle; }
+li.bibitem { margin-top: 1em; }
