@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    database:
+        image: mariadb:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: s3cr3ts3cr3t
+            MYSQL_USER: php
+            MYSQL_PASSWORD: s3cr3t
+    php_master:
+        image: phpmyadmin/phpmyadmin:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: s3cr3ts3cr3t
+            MYSQL_USER: php
+            MYSQL_PASSWORD: s3cr3t
+            PMA_ABSOLUTE_URI: http://192.168.122.250
+        depends_on:
+            - database
+        links:
+            - database:db
+    php_slave:
+        image: phpmyadmin/phpmyadmin:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: s3cr3ts3cr3t
+            MYSQL_USER: php
+            MYSQL_PASSWORD: s3cr3t
+            PMA_ABSOLUTE_URI: http://192.168.122.250
+        depends_on:
+            - database
+        links:
+            - database:db
+    loadbalancer:
+        image: haproxy:alpine
+        depends_on:
+            - php_master
+            - php_slave
+        links:
+            - php_master:php_master
+            - php_slave:php_slave
+        ports:
+            - 80:80
+            - 9000:9000
+        volumes:
+            - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
