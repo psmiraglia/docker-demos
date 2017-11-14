@@ -25,7 +25,7 @@ We assume a clean installation of Ubuntu 16.04 LTS.
 
 2.  Install Docker compose (see [Install Compose] on Docker pages)
 
-        $ sudo curl https://github.com/docker/compose/releases/download/1.16.1/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose
+        $ sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose
         $ sudo chmod +x /usr/local/bin/docker-compose
 
 [Install using the repository]: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
