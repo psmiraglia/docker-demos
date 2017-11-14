@@ -35,12 +35,12 @@ We assume a clean installation of Ubuntu 16.04 LTS.
 
 1.  Start the LAMP stack
 
-        $ docker-compose up
+        $ sudo docker-compose up
 
 2.  Kill the master PHP instances
 
-        $ docker-compose stop php_master
+        $ sudo docker-compose stop php_master
 
 3.  Restart the master PHP instance
 
-        $ docker-compose start php_master
+        $ sudo docker-compose start php_master
